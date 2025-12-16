@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Auto Repair - Professional Automotive & Heavy-Duty Repair Services</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B1319',
+                        secondary: '#20499B',
+                        accent: '#F8B329',
+                        dark: '#1F2937',
+                        light: '#F9FAFB',
+                        'primary-light': '#A82D33',
+                        'primary-dark': '#6F0F14',
+                        'secondary-light': '#3A63B5',
+                        'secondary-dark': '#18367A',
+                        'accent-light': '#F9C257',
+                        'accent-dark': '#E6A216',
+                        'neutral-light': '#F5F7FA',
+                        'neutral-dark': '#2D3748'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'heading': ['Inter', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #8B1319, #20499B);
+        }
+        
+        .center-title .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(139, 19, 25, 0.7) 0%, rgba(32, 73, 155, 0.7) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 80px;
+            color: #E5E7EB;
+            font-family: Georgia, serif;
+            z-index: 0;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #8B1319, #20499B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #20499B 0%, #8B1319 100%);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+        }
+        
+        /* Custom styles for the booking iframe */
+        .booking-container {
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 420px;
+            max-width: 90%;
+            z-index: 10;
+        }
+        
+        .booking-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            background: white;
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            transition: all 0.3s ease;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #8B1319 0%, #20499B 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #8B1319, #20499B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-badge {
+            background: linear-gradient(90deg, #20499B, #8B1319);
+        }
+        
+        .service-card {
+            border-top: 4px solid;
+            border-image: linear-gradient(90deg, #8B1319, #20499B) 1;
+        }
+        
+        .instagram-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .instagram-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .instagram-card:hover .instagram-overlay {
+            opacity: 1;
+        }
+        
+        .instagram-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 19, 25, 0.7) 0%, rgba(32, 73, 155, 0.7) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .contact-icon {
+            background: linear-gradient(135deg, #20499B 0%, #8B1319 100%);
+        }
+        
+        .footer-links a:hover {
+            color: #F8B329;
+        }
+        
+        @media (max-width: 1024px) {
+            .booking-container {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                width: 100%;
+                max-width: 500px;
+                margin: 3rem auto 0;
+            }
+            
+            .booking-frame {
+                height: 500px;
+            }
+            
+            .section-padding {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral-light font-body">
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-200">
+        <div class="w-full px-4 sm:px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://i.postimg.cc/ZKcdxYxF/logo-mo2.png" alt="Elite Auto Repair" class="h-12 sm:h-16 w-auto">
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-primary transition-colors font-medium">Services</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-primary transition-colors font-medium">Gallery</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-primary transition-colors font-medium">Testimonials</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary transition-colors font-medium">Contact</a>
+                    <button class="gradient-bg text-white px-4 sm:px-6 py-2.5 !rounded-button hover:opacity-90 transition-all whitespace-nowrap font-semibold shadow-md">Book Now</button>
+                </div>
+                <button id="mobile-menu-toggle" class="md:hidden w-8 h-8 flex items-center justify-center">
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-b border-gray-200 py-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">Home</a>
+                <a href="#services" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">Services</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">Gallery</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">Testimonials</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">Contact</a>
+                <button class="gradient-bg text-white px-6 py-3 !rounded-button hover:opacity-90 transition-all whitespace-nowrap font-semibold shadow-md w-full">Book Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 md:pt-0" style="background-image: url('https://img.freepik.com/premium-photo/repair-man-making-car-service_926199-2140594.jpg?w=740'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 gradient-overlay"></div>
+        
+        <div class="relative w-full px-4 sm:px-6 py-8 md:py-0">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="max-w-2xl">
+                        <div class="inline-block hero-badge backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
+                            <span class="text-white text-sm font-medium">20+ Years of Excellence in Auto Repair</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight font-heading">
+                            Premium Auto Repair <br>You Can Trust
+                        </h1>
+                        <p class="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-xl">
+                            Professional automotive and heavy-duty repair services with over 20 years of experience. From routine maintenance to complex engine rebuilds, we deliver quality workmanship every time.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="gradient-bg text-white px-6 sm:px-8 py-3 sm:py-4 !rounded-button hover:opacity-90 transition-all text-base sm:text-lg font-semibold whitespace-nowrap shadow-lg flex items-center justify-center">
+                                <i class="ri-calendar-line mr-2"></i> Book Appointment
+                            </button>
+                            <button class="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 !rounded-button hover:bg-white hover:text-gray-900 transition-colors text-base sm:text-lg font-semibold whitespace-nowrap flex items-center justify-center">
+                                <i class="ri-information-line mr-2"></i> Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Booking Widget -->
+                    <div class="booking-container mt-8 lg:mt-0">
+                        <iframe 
+                            src="https://arinvoice.utilitymobileapps.com/booking?FBProject=ARI&shopID=5dd08c23852b1252c3c380f0&version=v.15.6.5" 
+                            class="booking-frame"
+                            title="Book Your Appointment">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 sm:py-16 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                <div class="text-center">
+                    <div class="stat-number">5,000+</div>
+                    <p class="text-white/90 text-sm sm:text-base">Vehicles Serviced</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-number">20+</div>
+                    <p class="text-white/90 text-sm sm:text-base">Years Experience</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-number">98%</div>
+                    <p class="text-white/90 text-sm sm:text-base">Customer Satisfaction</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-number">24/7</div>
+                    <p class="text-white/90 text-sm sm:text-base">Emergency Service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Overview -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Why Choose Elite Auto Repair</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We combine decades of experience with modern diagnostic equipment to deliver exceptional automotive repair services.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center card-hover bg-neutral-light p-8 rounded-xl">
+                    <div class="w-16 h-16 gradient-bg text-white rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-tools-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Expert Technicians</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        ASE-certified mechanics with specialized training in both automotive and heavy-duty vehicle repair. Our team stays current with the latest technology and techniques.
+                    </p>
+                </div>
+                <div class="text-center card-hover bg-neutral-light p-8 rounded-xl">
+                    <div class="w-16 h-16 gradient-bg text-white rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-truck-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Heavy-Duty Specialists</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        From commercial trucks to construction equipment, we handle the toughest repair challenges with specialized tools and expertise for heavy-duty vehicles.
+                    </p>
+                </div>
+                <div class="text-center card-hover bg-neutral-light p-8 rounded-xl">
+                    <div class="w-16 h-16 gradient-bg text-white rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-time-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Fast Turnaround</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We understand downtime costs money. Our efficient processes and well-stocked parts inventory ensure quick, reliable repairs to get you back on the road.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-neutral-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Our Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive automotive and heavy-duty repair services to keep your vehicles running at peak performance.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover service-card">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Professional%20mechanic%20working%20on%20car%20engine%20repair%2C%20modern%20automotive%20workshop%2C%20detailed%20engine%20components%2C%20professional%20tools%2C%20clean%20workspace%20background%2C%20high%20quality%20automotive%20service&width=400&height=300&seq=engine-repair&orientation=landscape');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Engine Repair & Rebuild</h3>
+                        <p class="text-gray-600 mb-4">Complete engine diagnostics, repair, and rebuilding services for all makes and models.</p>
+                        <button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center">
+                            Get Quote <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover service-card">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Transmission%20repair%20service%2C%20automotive%20transmission%20components%2C%20professional%20mechanic%20tools%2C%20clean%20workshop%20environment%2C%20detailed%20transmission%20parts%2C%20quality%20automotive%20service&width=400&height=300&seq=transmission-repair&orientation=landscape');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Transmission Service</h3>
+                        <p class="text-gray-600 mb-4">Expert transmission repair, rebuilding, and maintenance for smooth operation.</p>
+                        <button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center">
+                            Get Quote <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover service-card">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Brake%20system%20repair%20service%2C%20brake%20pads%20and%20rotors%2C%20automotive%20brake%20components%2C%20professional%20brake%20service%2C%20clean%20automotive%20workshop%2C%20quality%20brake%20repair&width=400&height=300&seq=brake-service&orientation=landscape');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Brake Systems</h3>
+                        <p class="text-gray-600 mb-4">Complete brake service including pads, rotors, and hydraulic system maintenance.</p>
+                        <button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center">
+                            Get Quote <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover service-card">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Electrical%20system%20diagnostics%2C%20automotive%20wiring%20and%20electronics%2C%20diagnostic%20equipment%2C%20professional%20electrical%20repair%2C%20modern%20automotive%20workshop%2C%20electrical%20components&width=400&height=300&seq=electrical-service&orientation=landscape');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Electrical Systems</h3>
+                        <p class="text-gray-600 mb-4">Advanced diagnostics and repair of automotive electrical and electronic systems.</p>
+                        <button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center">
+                            Get Quote <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover service-card">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Heavy%20duty%20truck%20repair%2C%20commercial%20vehicle%20maintenance%2C%20large%20truck%20in%20professional%20repair%20bay%2C%20heavy%20equipment%20service%2C%20industrial%20automotive%20workshop&width=400&height=300&seq=heavy-duty-service&orientation=landscape');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Heavy-Duty Vehicles</h3>
+                        <p class="text-gray-600 mb-4">Specialized repair services for commercial trucks and heavy equipment.</p>
+                        <button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center">
+                            Get Quote <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover service-card">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Preventive%20maintenance%20service%2C%20oil%20change%20and%20routine%20maintenance%2C%20automotive%20service%20bay%2C%20professional%20maintenance%20tools%2C%20clean%20workshop%20environment&width=400&height=300&seq=maintenance-service&orientation=landscape');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Preventive Maintenance</h3>
+                        <p class="text-gray-600 mb-4">Regular maintenance services to keep your vehicle running efficiently and reliably.</p>
+                        <button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center">
+                            Get Quote <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Latest from the Shop</h2>
+                <p class="text-xl text-gray-600 mb-6">
+                    Follow our work and see the quality repairs we deliver every day.
+                </p>
+                <p class="text-secondary font-semibold">@eliteautorepair</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="instagram-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Before%20and%20after%20engine%20rebuild%20project%2C%20automotive%20repair%20transformation%2C%20professional%20engine%20work%2C%20clean%20workshop%2C%20quality%20craftsmanship%20showcase&width=400&height=400&seq=instagram-1&orientation=squarish');"></div>
+                    <div class="instagram-overlay">
+                        <i class="ri-instagram-line text-white text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm text-gray-600">Complete engine rebuild on 2019 Ford F-250. Another satisfied customer back on the road! #enginerebuild #fordrepair</p>
+                    </div>
+                </div>
+                <div class="instagram-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Professional%20brake%20system%20repair%2C%20brake%20components%20replacement%2C%20automotive%20brake%20service%2C%20quality%20brake%20parts%2C%20professional%20workshop%20environment&width=400&height=400&seq=instagram-2&orientation=squarish');"></div>
+                    <div class="instagram-overlay">
+                        <i class="ri-instagram-line text-white text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm text-gray-600">Fresh brake service on this beauty. Safety first! New pads, rotors, and fluid flush. #brakeservice #safetyfirst</p>
+                    </div>
+                </div>
+                <div class="instagram-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Heavy%20duty%20truck%20transmission%20repair%2C%20commercial%20vehicle%20service%2C%20large%20truck%20in%20professional%20repair%20bay%2C%20specialized%20heavy%20equipment%20tools&width=400&height=400&seq=instagram-3&orientation=squarish');"></div>
+                    <div class="instagram-overlay">
+                        <i class="ri-instagram-line text-white text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm text-gray-600">Major transmission overhaul on this commercial rig. Our heavy-duty specialists at work! #heavyduty #transmission</p>
+                    </div>
+                </div>
+                <div class="instagram-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Modern%20diagnostic%20equipment%20in%20use%2C%20automotive%20computer%20diagnostics%2C%20professional%20diagnostic%20tools%2C%20clean%20workshop%2C%20advanced%20automotive%20technology&width=400&height=400&seq=instagram-4&orientation=squarish');"></div>
+                    <div class="instagram-overlay">
+                        <i class="ri-instagram-line text-white text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm text-gray-600">State-of-the-art diagnostics help us pinpoint issues quickly and accurately. Technology meets experience! #diagnostics</p>
+                    </div>
+                </div>
+                <div class="instagram-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Team%20of%20professional%20mechanics%2C%20automotive%20repair%20team%2C%20experienced%20technicians%2C%20professional%20workshop%20environment%2C%20quality%20automotive%20service%20team&width=400&height=400&seq=instagram-5&orientation=squarish');"></div>
+                    <div class="instagram-overlay">
+                        <i class="ri-instagram-line text-white text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm text-gray-600">Our experienced team ready to tackle any repair challenge. ASE certified and always learning! #teamwork #ase</p>
+                    </div>
+                </div>
+                <div class="instagram-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Organized%20automotive%20parts%20inventory%2C%20quality%20replacement%20parts%2C%20professional%20parts%20storage%2C%20automotive%20workshop%20supplies%2C%20clean%20organized%20workspace&width=400&height=400&seq=instagram-6&orientation=squarish');"></div>
+                    <div class="instagram-overlay">
+                        <i class="ri-instagram-line text-white text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm text-gray-600">Well-stocked with quality parts means faster repairs for our customers. We use only the best! #qualityparts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-neutral-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">What Our Customers Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Don't just take our word for it. Here's what our satisfied customers have to say about our service.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Outstanding service! They diagnosed and fixed my transmission issue quickly and at a fair price. The team was professional and kept me informed throughout the process."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Michael Rodriguez</p>
+                            <p class="text-sm text-gray-600">Fleet Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "I've been bringing my trucks here for years. They always deliver quality work on time and at competitive prices. Highly recommend for heavy-duty repairs!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Sarah Johnson</p>
+                            <p class="text-sm text-gray-600">Construction Company Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Excellent customer service and expert technicians. They explained everything clearly and got my car running like new. Will definitely be back!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">David Chen</p>
+                            <p class="text-sm text-gray-600">Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ready to get your vehicle back on the road? Contact us today to schedule your appointment.
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-neutral-light p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="contact-icon w-12 h-12 text-white rounded-lg flex items-center justify-center mr-4">
+                                <i class="ri-phone-line text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Phone</p>
+                                <p class="text-gray-600">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="contact-icon w-12 h-12 text-white rounded-lg flex items-center justify-center mr-4">
+                                <i class="ri-mail-line text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Email</p>
+                                <p class="text-gray-600">info@eliteautorepair.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="contact-icon w-12 h-12 text-white rounded-lg flex items-center justify-center mr-4">
+                                <i class="ri-map-pin-line text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Address</p>
+                                <p class="text-gray-600">1234 Industrial Drive<br>Automotive City, AC 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="contact-icon w-12 h-12 text-white rounded-lg flex items-center justify-center mr-4">
+                                <i class="ri-time-line text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Business Hours</p>
+                                <p class="text-gray-600">Mon-Fri: 7:00 AM - 6:00 PM<br>Sat: 8:00 AM - 4:00 PM<br>Sun: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="mt-8 space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                        </div>
+                        <input type="text" placeholder="Subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                        <textarea rows="4" placeholder="Your Message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary resize-none"></textarea>
+                        <button type="submit" class="w-full gradient-bg text-white py-3 !rounded-button hover:opacity-90 transition-all font-semibold whitespace-nowrap">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-full min-h-96 bg-cover bg-center" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <img src="https://i.postimg.cc/ZKcdxYxF/logo-mo2.png" alt="" class="h-20 w-auto mb-4">
+                    <p class="text-white/90 mb-6 leading-relaxed">
+                        Professional automotive and heavy-duty repair services with over 20 years of experience. Quality workmanship you can trust.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white hover:text-primary transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white hover:text-primary transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white hover:text-primary transition-colors">
+                            <i class="ri-google-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Services</h4>
+                    <ul class="space-y-3 text-white/90 footer-links">
+                        <li><a href="#" class="transition-colors">Engine Repair</a></li>
+                        <li><a href="#" class="transition-colors">Transmission Service</a></li>
+                        <li><a href="#" class="transition-colors">Brake Systems</a></li>
+                        <li><a href="#" class="transition-colors">Electrical Systems</a></li>
+                        <li><a href="#" class="transition-colors">Heavy-Duty Vehicles</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-white/90 footer-links">
+                        <li><a href="#" class="transition-colors">About Us</a></li>
+                        <li><a href="#" class="transition-colors">Services</a></li>
+                        <li><a href="#" class="transition-colors">Gallery</a></li>
+                        <li><a href="#" class="transition-colors">Testimonials</a></li>
+                        <li><a href="#" class="transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Info</h4>
+                    <div class="space-y-3 text-white/90">
+                        <p class="flex items-center">
+                            <i class="ri-phone-line mr-3"></i>
+                            (555) 123-4567
+                        </p>
+                        <p class="flex items-center">
+                            <i class="ri-mail-line mr-3"></i>
+                            info@eliteautorepair.com
+                        </p>
+                        <p class="flex items-start">
+                            <i class="ri-map-pin-line mr-3 mt-1"></i>
+                            1234 Industrial Drive<br>Automotive City, AC 12345
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/70">
+                <p>&copy; 2025 Elite Auto Repair. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="navigation-scroll">
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.querySelector('nav');
+            let lastScrollY = window.scrollY;
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('shadow-lg');
+                } else {
+                    nav.classList.remove('shadow-lg');
+                }
+                lastScrollY = window.scrollY;
+            });
+        });
+    </script>
+
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
